@@ -14,7 +14,7 @@
   xmlns:ahf="http://www.antennahouse.com/names/XSLT/Functions/Document"
   xmlns:ahs="http://www.antennahouse.com/names/XSLT/Document/Layout"
   xmlns:map="http://www.w3.org/2005/xpath-functions/map" exclude-result-prefixes="xs ahf ahs map"
-  default-mode="proc">
+  default-mode="MODE_PROC_JOB_FOR_COPY">
   <xsl:output method="adaptive"/>
   <xsl:param name="PRM_INPUT_DIR" as="xs:anyURI" required="yes"/>
   <!--Referenced resources @outputclass -->
@@ -25,7 +25,7 @@
   <xsl:param name="PRM_TARGET_NAME" as="xs:string" required="yes"/>
   
   
-  <xsl:mode name="proc" on-no-match="shallow-skip"/>
+  <xsl:mode name="MODE_PROC_JOB_FOR_COPY" on-no-match="shallow-skip"/>
   
   <xsl:variable name="gInputDirNormalized" as="xs:string" select="$PRM_INPUT_DIR => ahf:bsToSlash()"/>
   <xsl:variable name="gLinkTargetOutputClass" as="xs:string+"
@@ -47,7 +47,7 @@
   <xsl:import href="plugin:com.antennahouse.pdf5.ml:xsl/dita2fo_error_util.xsl"/>
   <xsl:import href="plugin:com.antennahouse.pdf5.ml:xsl/dita2fo_message.xsl/"/>
 
-  <xsl:template match="/" mode="proc">
+  <xsl:template match="/" mode="MODE_PROC_JOB_FOR_COPY">
     <xsl:variable name="map"  as="document-node()"
       select="concat('file:///', $PRM_TEMP_DIR, '/', $gInputMap/@uri) => ahf:bsToSlash() => resolve-uri() => doc()"/>
     <!--
